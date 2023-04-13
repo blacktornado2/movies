@@ -16,7 +16,6 @@ const Sidebar = () => {
             `${baseURL}/genre/movie/list?api_key=${API_KEY}`
         );
         setGenres(response.data.genres);
-        console.log(genres);
     };
 
     return (
