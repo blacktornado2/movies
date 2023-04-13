@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Navbar, Sidebar, Cards } from "./components";
+import { Navbar, Sidebar, Cards, Banner } from "./components";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 const API_KEY = import.meta.env.VITE_API_KEY_V3;
@@ -40,7 +40,8 @@ const App = () => {
             />
 
             <Sidebar fetchMovies={fetchMovies} />
-            <Cards movies={movies} />
+            <Banner featuredMovie={movies[0]} />
+            <Cards movies={movies.slice(1)} />
         </div>
     );
 };
