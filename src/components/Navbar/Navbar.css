@@ -1,0 +1,13 @@
+.navbar {
+    height: 72px;
+    background-color: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar input[type="text"] {
+    padding: 0.5rem 2rem;
+    margin: 0 1rem;
+    border-radius: 10px;
+}
