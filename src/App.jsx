@@ -15,8 +15,8 @@ const App = () => {
         fetchMovies();
     }, []);
 
-    const fetchMovies = async () => {
-        if (searchText) {
+    async function fetchMovies(searchTerm) {
+        if (searchTerm) {
             const { data } = await axios.get(
                 `${baseURL}/search/movie?api_key=${API_KEY}&query=${searchText}`
             );
@@ -29,7 +29,7 @@ const App = () => {
         );
         const movies = data.results;
         setMovies(movies);
-    };
+    }
 
     return (
         <div>

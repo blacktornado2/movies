@@ -5,7 +5,6 @@ const imageURL = import.meta.env.VITE_IMAGE_URL;
 const imageSize = "w500";
 
 const Banner = ({ featuredMovie }) => {
-    console.log(featuredMovie);
     return (
         featuredMovie && (
             <div className="banner">

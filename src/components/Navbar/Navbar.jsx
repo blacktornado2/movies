@@ -5,7 +5,14 @@ import "./Navbar.css";
 const Navbar = ({ searchText, setSearchText, fetchMovies }) => {
     const handleClick = e => {
         e.preventDefault();
-        fetchMovies();
+        fetchMovies(searchText);
+    };
+
+    const handleEnterPress = e => {
+        e.preventDefault();
+        if (e.key === "Enter") {
+            fetchMovies(searchText);
+        }
     };
 
     return (
@@ -18,6 +25,7 @@ const Navbar = ({ searchText, setSearchText, fetchMovies }) => {
                     value={searchText}
                     placeholder="Search movies"
                     onChange={e => setSearchText(e.target.value)}
+                    onKeyUp={e => handleEnterPress(e)}
                 />
                 <button type="submit" onClick={e => handleClick(e)}>
                     Submit
