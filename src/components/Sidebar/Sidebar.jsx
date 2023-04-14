@@ -5,25 +5,38 @@ import axios from "axios";
 const baseURL = import.meta.env.VITE_BASE_URL;
 const API_KEY = import.meta.env.VITE_API_KEY_V3;
 
-const Sidebar = () => {
-    const [genres, setGenres] = useState([]);
+const Sidebar = ({ activeGenreId, setActiveGenreId, fetchMovies }) => {
+    const [allGenres, setAllGenres] = useState([]);
     useEffect(() => {
-        fetchGenres();
+        fetchAllGenres();
     }, []);
 
-    const fetchGenres = async () => {
+    async function fetchAllGenres() {
         const response = await axios.get(
             `${baseURL}/genre/movie/list?api_key=${API_KEY}`
         );
-        setGenres(response.data.genres);
-    };
+        setAllGenres(response.data.genres);
+    }
+
+    function handleClick(genreId) {
+        if (genreId === activeGenreId) {
+            setActiveGenreId(0);
+            return;
+        }
+        setActiveGenreId(genreId);
+        fetchMovies();
+    }
 
     return (
         <div>
-            {genres?.length ? (
+            {allGenres?.length ? (
                 <div className="genres">
-                    {genres.map(genre => (
-                        <div className="genre" key={genre.id}>
+                    {allGenres.map(genre => (
+                        <div
+                            className="genre"
+                            key={genre.id}
+                            onClick={() => handleClick(genre.id)}
+                        >
                             {genre.name}
                         </div>
                     ))}
